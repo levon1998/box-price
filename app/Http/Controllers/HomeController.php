@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Boxes;
+use App\Models\Subscriber;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class HomeController extends Controller
+{
+    /**
+     * Function to return home page
+     */
+    public function index()
+    {
+        $boxes = Boxes::select('id', 'name', 'description', 'price', 'image_source')->get();
+        return view('user.home.index', compact('boxes'));
+    }
+
+    /**
+     * Function to return home page
+     */
+    public function howItWork()
+    {
+        return view('user.how-it-work.index');
+    }
+
+    /**
+     * Function to return home page
+     */
+    public function confirmEmail()
+    {
+        $confirmed = false;
+        return view('user.confirm-email.index', compact('confirmed'));
+    }
+
+    /**
+     * Function to return home page
+     * @param $userId
+     * @param $token
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function confirm($userId, $token)
+    {
+        $confirmed  = true;
+        $user       = User::where('id', $userId)->where('verify_token', $token)->whereDate('created_at', '>', Carbon::now()->subDay())->first();
+        if (!$user) abort(404);
+
+        $user->verify_token      = null;
+        $user->email_verified_at = Carbon::now();
+        $user->save();
+
+        return view('user.confirm-email.index', compact('confirmed'));
+    }
+
+    /**
+     * Function to save subscriber email
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function subscribe(Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email|unique:subscribers,email|max:255|min:2',
+        ]);
+
+        $subscriber = new Subscriber();
+        $subscriber->email = $request->input('email');
+        $subscriber->save();
+
+        return response()->json(['status' => 'ok', 'message' => 'Спасибо За Подписку']);
+    }
+
+    /**
+     * Function to return lasts wins
+     */
+    public function lastWins()
+    {
+        return view('user.last-wins.index');
+    }
+}
