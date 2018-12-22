@@ -21,7 +21,7 @@ class AccountController extends Controller
             ->where('user_id', Auth::user()->id)
             ->where('state', 'open')
             ->orderBy('created_at', 'desc')
-            ->limit(20) 
+            ->limit(20)
             ->get();
 
         return view('user.account.index', compact('lastWins'));
