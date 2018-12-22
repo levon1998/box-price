@@ -14,6 +14,7 @@ class SocialAuthController extends Controller
     const providers = [
         'vkontakte'     => "1",
         'odnoklassniki' => "2",
+        'facebook'      => "3",
     ];
     /**
      * @param $provider
