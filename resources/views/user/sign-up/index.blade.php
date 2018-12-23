@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 
 @section('title')
-    Box Prize - Регистрация
+    Box Price - Регистрация
 @endsection
 
 @section('styles')
@@ -33,7 +33,7 @@
                                 <input type="password" name="password_confirmation" class="form-control input-type-text" placeholder="Подтверждения">
                             </div>
                             <div class="form-group mt2 mb3">
-                                <button href="http://box-prize.loc/sign-up" class="menu-btn ">Далее</button>
+                                <button href="{{ url('/sign-up') }}" class="menu-btn ">Далее</button>
                             </div>
                             <hr />
                             @include('user.layout.o-auth')

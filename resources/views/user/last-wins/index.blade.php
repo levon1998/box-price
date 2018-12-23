@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 
 @section('title')
-    Box Prize - Последние Выигрыши
+    Box Price - Последние Выигрыши
 @endsection
 
 @section('content')

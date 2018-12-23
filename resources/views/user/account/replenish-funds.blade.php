@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 
 @section('title')
-    Box Prize - Пополнить Балансе
+    Box Price - Пополнить Балансе
 @endsection
 
 @section('content')

@@ -18,7 +18,7 @@
                     <table cellpadding="0" cellspacing="0" width="100%" align="center" style="background-image: url({{ env('APP_URL') }}/img/bg-light2.png); background-size: cover; height: 200px;">
                         <tr>
                             <td>
-                                <h3><span style="color: #34bbff;">Box Prize </span> Спасибо за регистрацию</h3>
+                                <h3><span style="color: #34bbff;">Box Price </span> Спасибо за регистрацию</h3>
                             </td>
                         </tr>
                         <tr>

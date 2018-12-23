@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 
 @section('title')
-    Box Prize - Подтвердить Электронный Почты
+    Box Price - Подтвердить Электронный Почты
 @endsection
 
 @section('content')
@@ -9,11 +9,11 @@
         <div class="banner burger  align-item-center parallax" style="background-position-y: 0px;">
             <div class="container text-center">
                 @if ($confirmed)
-                    <h2><strong class="template-color">Box Prize</strong> <span class="confirmedText">Подтверждения</span></h2><br />
+                    <h2><strong class="template-color">Box Price</strong> <span class="confirmedText">Подтверждения</span></h2><br />
                     <p><i class="fa fa-refresh fa-spin" id="confirmLoading" style="font-size:200px; color: #34bbff;" ></i></p>
                     <a href="{{ url('sign-in') }}" class="menu-btn loginBtn" style="display: none;">Войти</a>
                 @else
-                    <h2><strong class="template-color">Box Prize</strong> Спасибо за регистрацию </h2>
+                    <h2><strong class="template-color">Box Price</strong> Спасибо за регистрацию </h2>
                     <br />
                     <p>Благодарим вас за регистрацию, мы отправили письмо с ссылкой активация.</p>
                     <p>Если письмо не пришел пожалуйста праверты спам.</p>

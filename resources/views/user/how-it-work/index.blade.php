@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 
 @section('title')
-    Box Prize - Как Это Работает
+    Box Price - Как Это Работает
 @endsection
 
 @section('content')
