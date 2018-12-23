@@ -38,6 +38,11 @@ class AccountController extends Controller
         return view('user.account.my-boxes', compact('closedBoxes', 'openBoxes'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
     public function openBox(Request $request)
     {
         $request->validate([
@@ -76,5 +81,18 @@ class AccountController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function replenishFunds()
+    {
+        return view('user.account.replenish-funds');
+    }
+
+    public function withDawnFunds()
+    {
+        return view('user.account.with-dawn-funds');
     }
 }
