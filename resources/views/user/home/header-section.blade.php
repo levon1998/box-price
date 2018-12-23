@@ -5,13 +5,12 @@
                 <div class="col-sm-6 col-lg-6 ">
                     <div class="banner-text">
                         <h2 class="wow fadeIn" data-wow-delay="0.5s" data-wow-duration="1s">
-                            <strong class="template-color">BoxPrize</strong> лучший способ зарабатывать деньги
+                            <strong class="template-color">BoxPrice</strong> лучший способ зарабатывать деньги
                         </h2>
                         <p class="wow fadeIn big-pera" data-wow-delay="1s" data-wow-duration="2s">
                             <strong class="template-color">Почему с нами легко зарабатывать </strong><br />
                             <ul class="wow fadeIn " data-wow-delay="1s" data-wow-duration="2s">
                                 <li>+20% при каждом пополнении</li>
-                                <li>Никаких ограничения на выход</li>
                                 <li>Выиграть до 2 раза больше</li>
                                 <li>Стабильность</li>
                                 <li>Моментальная выплата</li>

@@ -29,6 +29,10 @@ Route::middleware('user')->group(function () {
     Route::get('/my-boxes', 'AccountController@myBoxes')->name('my-boxes');
     Route::post('/open-box', 'AccountController@openBox')->name('open-box');
 
+    // Payment actions
     Route::get('/replenish-funds', 'AccountController@replenishFunds')->name('replenish-funds');
-    Route::get('/withdraw-funds', 'AccountController@withdawnFunds')->name('withdraw-funds');
+    Route::get('/withdraw-funds', 'AccountController@withDawnFunds')->name('withdraw-funds');
+    Route::post('/replenish-funds/result', 'PaymentsController@replenishFundsResult');
+    Route::get('/replenish-funds/success', 'PaymentsController@replenishFundsResult');
+    Route::get('/replenish-funds/fail', 'PaymentsController@replenishFundsResult');
 });

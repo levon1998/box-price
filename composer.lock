@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d18b81b1413adc77e7f1f3a708b42d13",
+    "content-hash": "490889d24c41419936de3270ece15fca",
     "packages": [
         {
             "name": "actionm/laravel-webmoney-merchant",
@@ -424,6 +424,46 @@
                 "trusted proxy"
             ],
             "time": "2018-02-07T20:20:57+00:00"
+        },
+        {
+            "name": "gr8devofficial/laravel-free-kassa",
+            "version": "v0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gr8DevOfficial/laravel-free-kassa.git",
+                "reference": "8dfa9b710d81ea5b64fadd6e819be9f7824adc6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gr8DevOfficial/laravel-free-kassa/zipball/8dfa9b710d81ea5b64fadd6e819be9f7824adc6f",
+                "reference": "8dfa9b710d81ea5b64fadd6e819be9f7824adc6f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "guzzlehttp/guzzle": "^6.3@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gr8devofficial\\LaravelFreecassa\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gr8devofficial\\LaravelFreecassa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Gr8dev",
+                    "email": "support@gr8dev.com"
+                }
+            ],
+            "time": "2018-10-19T13:36:22+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

@@ -8,7 +8,7 @@
                 <span class="icon-bar btm"></span>
             </button>
             <a href="{{ url('/') }}" class="logo navbar-brand">
-                𝔹𝕠𝕩 ℙ𝕣𝕚𝕫𝕖
+                𝔹𝕠𝕩 ℙ𝕣𝕚c𝕖
             </a>
         </div>
         <div id="navbarCollapse" class="collapse navbar-collapse ">

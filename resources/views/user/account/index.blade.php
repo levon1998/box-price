@@ -39,7 +39,7 @@
                                 </table><br /><br />
                                 <h3>Награды и Достижения</h3>
                                 <div class="prize-section">
-
+{{-- <iframe src="http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=113338&default-sum=200&button-text=Оплатить&encoding=CP1251&type=v3&id=271637"  width="590" height="320" frameBorder="0" target="_parent" ></iframe> --}}
                                 </div>
                             </div>
                         </div>
