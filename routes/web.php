@@ -31,8 +31,9 @@ Route::middleware('user')->group(function () {
 
     // Payment actions
     Route::get('/replenish-funds', 'AccountController@replenishFunds')->name('replenish-funds');
+    Route::post('/replenish-funds', 'AccountController@replenishFundsSave')->name('replenish-funds-save');
     Route::get('/withdraw-funds', 'AccountController@withDawnFunds')->name('withdraw-funds');
     Route::post('/replenish-funds/result', 'PaymentsController@replenishFundsResult');
-    Route::get('/replenish-funds/success', 'PaymentsController@replenishFundsResult');
-    Route::get('/replenish-funds/fail', 'PaymentsController@replenishFundsResult');
+    Route::get('/replenish-funds/success', 'PaymentsController@replenishFundsSuccess');
+    Route::get('/replenish-funds/fail', 'PaymentsController@replenishFundsFail');
 });

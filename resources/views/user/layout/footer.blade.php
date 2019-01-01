@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="text-center col-sm-12 mb1 wow fadeInUp" data-wow-delay=".8s" data-wow-duration=".5s">
-                <p class="copyright">Copyright &copy; 2018 <a href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/4.png"></a></p>
+                <p class="copyright">Copyright &copy; 2018 <a href="//www.free-kassa.ru/"></a></p>
             </div>
         </div>
     </div>

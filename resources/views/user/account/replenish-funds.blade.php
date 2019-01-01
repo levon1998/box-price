@@ -13,8 +13,26 @@
                         @include('user.account.tabs')
 
                         <div class="tab-content">
-                            <div class="col-md-7">
-                                <iframe src="http://www.free-kassa.ru/merchant/forms.php?gen_form=1&m=113338&default-sum=200&button-text=Оплатить&type=v3&id=273044"  width="590" height="320" frameBorder="0" target="_parent" ></iframe>
+                            <div class="col-md-6">
+                                <form method="post" action="{{ url(route('replenish-funds-save')) }}">
+                                    <h2 class="template-color mt3 mb3">Пополнить с помощью Payeer</h2>
+                                    <div class="form-group has-warning has-feedback mb2">
+                                        <input type="number" name="m_amount" class="form-control {{ ($errors->first('username')) ? 'has-error' : '' }} input-type-text" placeholder="Сумма пополнения (50.00 рублей)">
+                                    </div>
+
+                                    <input type="hidden" name="m_shop" value="{{ env('PAYEER_M_ID') }}">
+{{--                                    <input type="hidden" name="m_orderid" value="{{ uniqid(time()) }}">--}}
+                                    <input type="hidden" name="m_orderid" value="12345">
+                                    <input type="hidden" name="m_curr" value="{{ env('PAYEER_M_CURR') }}">
+                                    <input type="hidden" name="m_desc" value="{{ env('PAYEER_M_DESC') }}">
+                                    <input type="hidden" name="m_sign" value="{{ env('PAYEER_M_SIGN') }}">
+                                    {{ csrf_field() }}
+                                    <input type="submit" name="m_process" class="redirect-btn btn-alpha" value="Пополнить" />
+
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+
                             </div>
                         </div>
                     </div>

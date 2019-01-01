@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Boxes;
 use App\Models\BoxUser;
+use App\Models\ReplenishPays;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -89,6 +90,32 @@ class AccountController extends Controller
     public function replenishFunds()
     {
         return view('user.account.replenish-funds');
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function replenishFundsSave(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $mOrderId = '12345'; // uniqid(time().Auth::user()->id);
+        $sum = number_format($request->input('m_amount'), 2, '.', '');
+        $arHash['m_shop'] = env('PAYEER_M_ID');
+        $arHash['m_orderid'] = $mOrderId;
+        $arHash['m_amount'] = $sum;
+        $arHash['m_curr'] = env('PAYEER_M_CURR');
+        $arHash['m_desc'] = base64_encode('Test');
+        $arHash['m_sign'] = env('PAYEER_M_SIGN');//strtoupper(hash('sha256', implode(':', $arHash)));
+
+        ReplenishPays::create([
+            'user_id' => $userId,
+            'order_id' => $mOrderId,
+            'pay' => $sum,
+            'status' => false
+        ]);
+
+        return redirect(env('PAYEER_MERCHENT_URL').http_build_query($arHash));
     }
 
     public function withDawnFunds()
