@@ -11,7 +11,7 @@
 
                 @if (!empty(Session::get('success')) && Session::get('success'))
                     <div class="alert alert-success" role="alert">
-                        Поздравляем. ваш счет успешно пополнен на {{ session('sum') }} сумму. Текущее баланс составляет {{ session('balance') }}.
+                        Поздравляем. ваш счет успешно пополнен. Текущее баланс составляет {{ Auth::user()->balance }}.
                     </div>
                 @elseif (!empty(Session::get('success')) && !Session::get('success'))
                     <div class="alert alert-danger" role="alert">
