@@ -9,11 +9,11 @@
         <div class="banner burger  align-item-center parallax" style="background-position-y: 0px;">
             <div class="container">
 
-                @if (!empty(session('session')) && session('session') == true)
+                @if (!empty(Session::get('success')) && Session::get('success'))
                     <div class="alert alert-success" role="alert">
                         Поздравляем. ваш счет успешно пополнен на {{ session('sum') }} сумму. Текущее баланс составляет {{ session('balance') }}.
                     </div>
-                @elseif (!empty(session('session')) && session('session') == false)
+                @elseif (!empty(Session::get('success')) && !Session::get('success'))
                     <div class="alert alert-danger" role="alert">
                         Произошла ошибка. попробуйте ещё или сообщить администрации.
                     </div>
