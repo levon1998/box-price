@@ -49,7 +49,7 @@ class PaymentsController extends Controller
         $data = ReplenishPays::select('user_id', 'pay')->where('order_id', $request->input('m_orderid'))->first();
         User::where('id', $data->user_id)->increment('balance', $data->pay);
         $user = User::select('balance')->where('id', $data->user_id)->first();
-        $request->session()->flash(['success' => true, 'balance' => $user->balance, 'sum' => $data->pay]);
+        $request->session()->flash('success', true);
         return redirect('/replenish-funds');
     }
 
@@ -60,7 +60,7 @@ class PaymentsController extends Controller
     public function replenishFundsFail(Request $request)
     {
         ReplenishPays::where('order_id', $request->input('m_orderid'))->delete();
-        $request->session()->flash(['success' => false]);
+        $request->session()->flash('success', false);
         return redirect('/replenish-funds');
     }
 }
