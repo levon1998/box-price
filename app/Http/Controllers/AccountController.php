@@ -89,7 +89,7 @@ class AccountController extends Controller
      */
     public function replenishFunds()
     {
-        $lastWins = ReplenishPays::select('order_id', 'pay', 'updated_at')
+        $lastWins = ReplenishPays::select('order_id', 'pay', 'created_at')
             ->where('user_id', Auth::user()->id)
             ->where('status', true)
             ->orderBy('id', 'desc')

@@ -11,7 +11,7 @@
 
                 @if (!empty(Session::get('success')) && Session::get('success'))
                     <div class="alert alert-success" role="alert">
-                        Поздравляем. ваш счет успешно пополнен. Текущее баланс составляет {{ number_format(Auth::user()->balance, 2, '.', '') }}.
+                        Поздравляем. ваш счет успешно пополнен. Текущее баланс составляет {{ number_format(Auth::user()->balance, 2, '.', '') }}
                     </div>
                 @elseif (!empty(Session::get('success')) && !Session::get('success'))
                     <div class="alert alert-danger" role="alert">
@@ -49,7 +49,7 @@
                                                 <tr>
                                                     <td>{{ $win->order_id }}</td>
                                                     <td>{{ number_format($win->pay, 2, '.', '')}}</td>
-                                                    <td>{{ $win->updated_at }}</td>
+                                                    <td>{{ $win->created_at }}</td>
                                                 </tr>
                                             @endforeach
                                         @else
