@@ -32,24 +32,32 @@ class PaymentsController extends Controller
             $signHash = strtoupper(hash('sha256', implode(':', $arHash)));
 
             if ($request->input('m_sign') == $signHash && $request->input('m_status') == 'success') {
-
-                // Update user balance
-                $data = ReplenishPays::where('order_id', $request->input('m_orderid'))->update(['status' => true]);
-                User::where('user_id', $data->user_id)->increment('balance', $data->pay);
-
                 exit($request->input('m_orderid').'|success');
             }
             exit($request->input('m_orderid').'|error');
         }
     }
 
-    public function replenishFundsSuccess()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function replenishFundsSuccess(Request $request)
     {
-
+        // Update user balance
+        ReplenishPays::where('order_id', $request->input('m_orderid'))->update(['status' => true]);
+        $data = ReplenishPays::select('user_id', 'pay')->where('order_id', $request->input('m_orderid'))->first();
+        $user = User::select('balance')->where('id', $data->user_id)->increment('balance', $data->pay);
+        return redirect('/replenish-funds')->with(['success' => true, 'balance' => $user->balance, 'sum' => $data->pay]);
     }
 
-    public function replenishFundsFail()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function replenishFundsFail(Request $request)
     {
-
+        ReplenishPays::where('order_id', $request->input('m_orderid'))->delete();
+        return redirect('/replenish-funds')->with(['success' => false]);
     }
 }
