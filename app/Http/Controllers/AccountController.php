@@ -89,7 +89,13 @@ class AccountController extends Controller
      */
     public function replenishFunds()
     {
-        return view('user.account.replenish-funds');
+        $lastWins = ReplenishPays::select('order_id', 'pay', 'updated_at')
+            ->where('user_id', Auth::user()->id)
+            ->where('status', true)
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
+        return view('user.account.replenish-funds', compact('lastWins'));
     }
 
     /**
