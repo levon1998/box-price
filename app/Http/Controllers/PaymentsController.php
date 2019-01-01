@@ -47,7 +47,8 @@ class PaymentsController extends Controller
         // Update user balance
         ReplenishPays::where('order_id', $request->input('m_orderid'))->update(['status' => true]);
         $data = ReplenishPays::select('user_id', 'pay')->where('order_id', $request->input('m_orderid'))->first();
-        $user = User::select('balance')->where('id', $data->user_id)->increment('balance', $data->pay);
+        User::where('id', $data->user_id)->increment('balance', $data->pay);
+        $user = User::select('balance')->where('id', $data->user_id)->first();
         return redirect('/replenish-funds')->with(['success' => true, 'balance' => $user->balance, 'sum' => $data->pay]);
     }
 
