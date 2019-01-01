@@ -8,6 +8,17 @@
     <section>
         <div class="banner burger  align-item-center parallax" style="background-position-y: 0px;">
             <div class="container">
+
+                @if (!empty($success) && $success)
+                    <div class="alert alert-success" role="alert">
+                        Поздравляем. ваш счет успешно пополнен на {{ $sum }} сумму. Текущее баланс составляет {{ $balance }}.
+                    </div>
+                @elseif (!empty($success) && !$success)
+                    <div class="alert alert-danger" role="alert">
+                        Произошла ошибка. попробуйте ещё или сообщить администрации.
+                    </div>
+                @endif
+
                 <div class="row align-item-center">
                     <div class="col-sm-12 text-center" style="min-height: 500px;">
                         @include('user.account.tabs')
@@ -37,7 +48,7 @@
                                             @foreach ($lastWins as $win)
                                                 <tr>
                                                     <td>{{ $win->order_id }}</td>
-                                                    <td>{{ $win->pay }}</td>
+                                                    <td>{{ number_format($win->pay, 2, '.', '')}}</td>
                                                     <td>{{ $win->updated_at }}</td>
                                                 </tr>
                                             @endforeach
