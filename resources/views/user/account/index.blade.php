@@ -34,6 +34,10 @@
                                                     <td>{{ $win->opened_date }}</td>
                                                 </tr>
                                             @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="4"><p>У вас пока нет выгрышов.</p></td>
+                                            </tr>
                                         @endif
                                     </tbody>
                                 </table><br /><br />
