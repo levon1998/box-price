@@ -95,6 +95,7 @@ class AccountController extends Controller
             ->orderBy('id', 'desc')
             ->limit(10)
             ->get();
+
         return view('user.account.replenish-funds', compact('lastWins'));
     }
 
