@@ -54,7 +54,7 @@ class PaymentsController extends Controller
         // Update user
         $user = User::select('id', 'balance', 'score')->where('id', $replenishPays->user_id)->first();
         $user->increment('balance', $sum);
-        $user->score = $replenishPays->pay / 10;
+        $user->score = ceil($replenishPays->pay / 10);
         $user->save();
 
         $request->session()->flash('success', true);
