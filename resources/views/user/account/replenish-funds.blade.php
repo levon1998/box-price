@@ -27,11 +27,14 @@
                             <div class="col-md-8 col-md-offset-2">
                                 <form method="post" action="{{ url(route('replenish-funds-save')) }}">
                                     <h2 class="template-color mt3 mb3">Пополнить с помощью Payeer</h2>
-                                    <div class="form-group has-warning has-feedback mb2">
-                                        <input type="number" name="m_amount" class="form-control {{ ($errors->first('username')) ? 'has-error' : '' }} input-type-text" placeholder="Сумма пополнения (50.00 рублей)">
-                                    </div>
                                     {{ csrf_field() }}
-                                    <input type="submit" name="m_process" class="redirect-btn btn-alpha" value="Пополнить" />
+                                    <div class="form-group has-warning has-feedback ">
+                                        <input type="number" name="m_amount" class="form-control {{ ($errors->first('m_amount')) ? 'has-error' : '' }} input-type-text" placeholder="Сумма пополнения (50.00 рублей)">
+                                        <span class="validation-error-text text-left mb1 mt1">{{ $errors->first('m_amount') }}</span>
+                                    </div>
+                                    <div class="form-group mt4">
+                                        <button type="submit" class="redirect-btn btn-alpha">Пополнить</button>
+                                    </div>
                                 </form><br />
 
                                 <h3>Последние 10 Выгрышы </h3><br />

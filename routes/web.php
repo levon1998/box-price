@@ -33,6 +33,7 @@ Route::middleware('user')->group(function () {
     Route::get('/replenish-funds', 'AccountController@replenishFunds')->name('replenish-funds');
     Route::post('/replenish-funds', 'AccountController@replenishFundsSave')->name('replenish-funds-save');
     Route::get('/withdraw-funds', 'AccountController@withDawnFunds')->name('withdraw-funds');
+    Route::post('/withdraw-funds', 'AccountController@withDawnFundsSave')->name('withdraw-funds-save');
     Route::post('/replenish-funds/result', 'PaymentsController@replenishFundsResult');
     Route::get('/replenish-funds/success', 'PaymentsController@replenishFundsSuccess');
     Route::get('/replenish-funds/fail', 'PaymentsController@replenishFundsFail');

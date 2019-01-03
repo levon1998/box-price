@@ -41,8 +41,8 @@
                                         @endif
                                     </tbody>
                                 </table><br /><br />
-                                <h3>Награды и Достижения</h3>
-                                <div class="prize-section"></div>
+                                {{--<h3>Награды и Достижения</h3>--}}
+                                {{--<div class="prize-section"></div>--}}
                             </div>
                         </div>
                     </div>

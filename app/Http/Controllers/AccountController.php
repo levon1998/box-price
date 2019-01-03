@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReplenishFundsSaveRequest;
+use App\Http\Requests\WithDrawFundsSaveRequest;
 use App\Models\Boxes;
 use App\Models\BoxUser;
 use App\Models\ReplenishPays;
@@ -100,14 +102,15 @@ class AccountController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param ReplenishFundsSaveRequest $request
      * @return void
      */
-    public function replenishFundsSave(Request $request)
+    public function replenishFundsSave(ReplenishFundsSaveRequest $request)
     {
         $userId = Auth::user()->id;
         $mOrderId = '12345'; // uniqid(time().Auth::user()->id);
         $sum = number_format($request->input('m_amount'), 2, '.', '');
+
         $arHash['m_shop'] = env('PAYEER_M_ID');
         $arHash['m_orderid'] = $mOrderId;
         $arHash['m_amount'] = $sum;
@@ -125,7 +128,11 @@ class AccountController extends Controller
         return redirect(env('PAYEER_MERCHENT_URL').http_build_query($arHash));
     }
 
-    public function withDawnFunds()
+    /**
+     * @param WithDrawFundsSaveRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function withDawnFunds(WithDrawFundsSaveRequest $request)
     {
         return view('user.account.with-dawn-funds');
     }

@@ -24,6 +24,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:void()">Баланс <span class="pull-right user-balance">{{ number_format(Auth::user()->balance, 2, '.', ' ') }}</span></a></li>
+                                <li><a href="javascript:void()">баллы <span class="pull-right user-balance">{{ Auth::user()->score }}</span></a></li>
                                 <hr class="dropdown-menu-hr"/>
                                 <li><a href="{{ url('/my-account') }}" >Моя страница</a></li>
                                 <li><a href="{{ url('/logout') }}">Выход</a></li>
