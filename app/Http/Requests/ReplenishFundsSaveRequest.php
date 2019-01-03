@@ -24,7 +24,7 @@ class ReplenishFundsSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'm_amount' => 'required|numeric|min:50'
+            'm_amount' => 'required|numeric'
         ];
     }
 
