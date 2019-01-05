@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\CronLog;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class AddScoreToUser extends Command
@@ -40,7 +41,7 @@ class AddScoreToUser extends Command
     public function handle()
     {
         $log = [];
-        $users = User::select('id')->get();
+        $users = User::select('id')->where('last_login', '>=', Carbon::now()->subWeek())->get();
 
         foreach ($users as $user) {
             if (is_null($user->spinner)) {

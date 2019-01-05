@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
             \JhaoDa\SocialiteProviders\Odnoklassniki\OdnoklassnikiExtendSocialite::class,
             'SocialiteProviders\\VKontakte\\VKontakteExtendSocialite@handle',
         ],
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\LogSuccessfulLogin',
+        ],
     ];
 
     /**
