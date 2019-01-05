@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('process:score')
-                  ->dailyAt('12:00');;
+//                  ->dailyAt('12:00');
+                  ->everyMinute();
     }
 
     /**
