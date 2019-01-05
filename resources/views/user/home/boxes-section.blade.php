@@ -19,7 +19,11 @@
                                 <img src="{{ asset($box->image_source) }}" class="box-image-size img-responsive" alt="image_source">
                                 <span>{{$box->name}}</span>
                                 <span>{{ $box->description }}</span>
-                                <button class="btn-alpha mt2 buy-box redirect-btn" data-box-id="{{$box->id}}">{{ $box->price }} Рублей</button>
+                                @if (Auth::check())
+                                    <button class="btn-alpha mt2 buy-box redirect-btn" data-box-id="{{$box->id}}">{{ $box->price }} Рублей</button>
+                                @else
+                                    <a href="{{ url('sign-in') }}" class="btn-alpha mt2 redirect-btn">{{ $box->price }} Рублей</a>
+                                @endif
                             </div>
                         @endforeach
                     @endif
