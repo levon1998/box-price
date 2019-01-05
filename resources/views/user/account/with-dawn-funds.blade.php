@@ -17,13 +17,17 @@
                                 <form method="post" action="{{ url(route('withdraw-funds-save')) }}">
                                     <h2 class="template-color mt3 mb3">Заказать мгновенную выплату </h2>
                                     <div class="form-group has-warning has-feedback mb2">
-                                        <input type="number" name="payeer_account" class="form-control {{ ($errors->first('payeer_account')) ? 'has-error' : '' }} input-type-text" placeholder="Номер Кошелька Payeer (P**********)">
+                                        <input type="text" name="payeer_account" class="form-control {{ ($errors->first('payeer_account')) ? 'has-error' : '' }} input-type-text" placeholder="Номер Кошелька Payeer (P**********)">
+                                        <span class="validation-error-text text-left mb1 mt1">{{ $errors->first('payeer_account') }}</span>
                                     </div>
                                     <div class="form-group has-warning has-feedback mb2">
                                         <input type="number" name="m_amount" class="form-control {{ ($errors->first('m_amount')) ? 'has-error' : '' }} input-type-text" placeholder="Сумма для вывода">
+                                        <span class="validation-error-text text-left mb1 mt1">{{ $errors->first('m_amount') }}</span>
                                     </div>
                                     {{ csrf_field() }}
-                                    <input type="submit" name="m_process" class="redirect-btn btn-alpha" value="Заказать выплату " />
+                                    <div class="form-group mt4">
+                                        <button type="submit" class="redirect-btn btn-alpha">Заказать выплату</button>
+                                    </div>
                                 </form><br />
 
                                 <h3>Последние 10 Выплат </h3><br />
@@ -37,7 +41,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @if (isset($lastPays) && count($lastPays) > 0)
 
+                                        @else
+                                            <tr>
+                                                <td colspan="4"><p>Вы ещё не заказывали выплату </p></td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

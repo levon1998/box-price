@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\UserSpinner;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -35,4 +36,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function spinner()
+    {
+        return $this->hasOne(UserSpinner::class, 'user_id', 'id');
+    }
 }

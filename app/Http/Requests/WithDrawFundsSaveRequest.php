@@ -2,6 +2,10 @@
 
 namespace App\Http\Requests;
 
+use ActionM\WebMoneyMerchant\Test\Dummy\Order;
+use App\Rules\CheckBalance;
+use App\Rules\CheckPayeerNumber;
+use App\Rules\OrderPay;
 use Illuminate\Foundation\Http\FormRequest;
 
 class WithDrawFundsSaveRequest extends FormRequest
@@ -24,7 +28,23 @@ class WithDrawFundsSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'payeer_account' => ['required', new CheckPayeerNumber],
+            'm_amount' => ['required', 'numeric', new CheckBalance, new OrderPay]
+        ];
+    }
+
+
+    /**
+     * Get the validation rules and make send messages.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'payeer_account.required' => 'Номер Кошелька обьзательное поля.',
+            'm_amount.required' => 'Сумма для вывода обьзательное поля.',
+//            'm_amount.min' => 'Минимальная сумма для вывода 10 рублей.'
         ];
     }
 }

@@ -30,31 +30,35 @@ class BoxController extends Controller
                 $user->decrement('balance', $box->price);
                 $user->save();
                 $maxPrice = $box->price * 2;
-                $content  = view('user.home.modal-content')->with([
-                    'header'  => 'Поздравляем',
-                    'image'   => $box->image_source,
-                    'content' => "Вы успешно приобрели ящик с возможным вигишом до {$maxPrice} рублей.",
-                    'status'  => 'OK'
-                ])->render();
+                $content  = $this->generateModalContent('Поздравляем', $box->image_source, "Вы успешно приобрели ящик с возможным вигишом до {$maxPrice} рублей.", 'OK');
                 $response = ['status' => 'OK', 'body' => $content, 'data' => ['balance' => number_format($user->balance, 2, '.', ' ')]];
             } else {
-                $content = view('user.home.modal-content')->with([
-                    'header'  => 'недостаточно средства',
-                    'image'   => '/img/Balance_justice.png',
-                    'content' => "К сожалению вашем счету недостаточно средств хотите пополнить его.",
-                    'status'  => 'BALANCE'
-                ])->render();
+                $content  = $this->generateModalContent('недостаточно средства', '/img/Balance_justice.png', "К сожалению вашем счету недостаточно средств хотите пополнить его.", 'BALANCE');
                 $response = ['status' => 'BALANCE', 'body' => $content, 'data' => ['balance' => number_format($user->balance, 2, '.', ' ')]];
             }
         } else {
-            $content = view('user.home.modal-content')->with([
-                'header'  => 'Произошла ошибка',
-                'image'   => '/img/404.png',
-                'content' => "Ошибка ящик не найден.",
-                'status'  => 'ERROR'
-            ])->render();
+            $content  = $this->generateModalContent('Произошла ошибка', '/img/404.png', "Ошибка ящик не найден.", 'ERROR');
             $response = ['status' => 'ERROR', 'body' => $content];
         }
         return response()->json($response);
+    }
+
+    /**
+     * @param $header
+     * @param $image
+     * @param $content
+     * @param $status
+     * @return string
+     * @throws \Throwable
+     */
+    private function generateModalContent($header, $image, $content, $status)
+    {
+        return view('user.home.modal-content')->with([
+            'header'        => $header,
+            'image'         => $image,
+            'content'       => $content,
+            'status'        => $status,
+            'hideMyBoxes'   => true
+        ])->render();
     }
 }

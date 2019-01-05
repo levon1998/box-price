@@ -129,11 +129,18 @@ class AccountController extends Controller
     }
 
     /**
-     * @param WithDrawFundsSaveRequest $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function withDawnFunds(WithDrawFundsSaveRequest $request)
+    public function withDawnFunds()
     {
         return view('user.account.with-dawn-funds');
+    }
+
+    /**
+     * @param WithDrawFundsSaveRequest $request
+     */
+    public function withDawnFundsSave(WithDrawFundsSaveRequest $request)
+    {
+
     }
 }

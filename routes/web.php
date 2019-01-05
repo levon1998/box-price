@@ -28,6 +28,8 @@ Route::middleware('user')->group(function () {
     Route::post('/buy-new-box', 'BoxController@buyNewBox');
     Route::get('/my-boxes', 'AccountController@myBoxes')->name('my-boxes');
     Route::post('/open-box', 'AccountController@openBox')->name('open-box');
+    Route::get('/auto-spinner', 'SpinnerController@autoSpinner')->name('auto-spinner');
+    Route::post('/buy-spinner', 'SpinnerController@buySpinner')->name('buy-spinner');
 
     // Payment actions
     Route::get('/replenish-funds', 'AccountController@replenishFunds')->name('replenish-funds');
