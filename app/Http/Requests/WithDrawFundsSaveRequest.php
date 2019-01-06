@@ -29,7 +29,7 @@ class WithDrawFundsSaveRequest extends FormRequest
     {
         return [
             'payeer_account' => ['required', new CheckPayeerNumber],
-            'm_amount' => ['required', 'numeric', new CheckBalance, new OrderPay]
+            'm_amount' => ['required', 'numeric', 'min:100', new CheckBalance, new OrderPay]
         ];
     }
 
@@ -44,7 +44,7 @@ class WithDrawFundsSaveRequest extends FormRequest
         return [
             'payeer_account.required' => 'Номер Кошелька обьзательное поля.',
             'm_amount.required' => 'Сумма для вывода обьзательное поля.',
-//            'm_amount.min' => 'Минимальная сумма для вывода 10 рублей.'
+            'm_amount.min' => 'Минимальная сумма для вывода 100 рублей.'
         ];
     }
 }

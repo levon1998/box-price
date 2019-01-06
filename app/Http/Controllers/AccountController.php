@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReplenishFundsSaveRequest;
 use App\Http\Requests\WithDrawFundsSaveRequest;
+use App\Libs\CPayeer;
 use App\Models\Boxes;
 use App\Models\BoxUser;
+use App\Models\PayLogs;
 use App\Models\ReplenishPays;
+use App\Models\WithdrawPays;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Exception;
 
 class AccountController extends Controller
 {
@@ -133,14 +137,76 @@ class AccountController extends Controller
      */
     public function withDawnFunds()
     {
-        return view('user.account.with-dawn-funds');
+        $lastPays = WithdrawPays::select('id', 'payeer', 'pay', 'state', 'created_at')
+            ->where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('user.account.with-dawn-funds', compact('lastPays'));
     }
 
     /**
      * @param WithDrawFundsSaveRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function withDawnFundsSave(WithDrawFundsSaveRequest $request)
     {
+        $apiId           = env('PAYEER_API_ID');
+        $apiKey          = env('PAYEER_SECRET');
+        $amount          = number_format($request->input('m_amount'), 2, '.', '');
+        $myAccountNumber = env('PAYEER_API_ACCOUNT');
+        $accountNumber   = $request->input('payeer_account');
+        $userId          = Auth::user()->id;
 
+        $payeer = new CPayeer($myAccountNumber, $apiId, $apiKey);
+        $withdrawPays = WithdrawPays::store($userId, $accountNumber, $amount, 'in_process');
+
+        if ($payeer->isAuth()) {
+            if ($payeer->checkUser(['user' => $accountNumber])) {
+                $arBalance = $payeer->getBalance();
+                if (isset($arBalance['balance'], $arBalance['balance']['RUB'])) {
+                    if ($arBalance['balance']['RUB']['DOSTUPNO_SYST'] >= $amount) {
+                        $initOutput = $payeer->initOutput([
+                            'ps' => '1136053',
+                            'curIn' => 'RUB',
+                            'sumOut' => $amount,
+                            'curOut' => 'RUB',
+                            'param_ACCOUNT_NUMBER' => $accountNumber
+                        ]);
+
+                        if ($initOutput) {
+                            $historyId = $payeer->output();
+                            if ($historyId > 0) {
+                                // Выплата успешна
+                                $withdrawPays->state = 'success';
+
+                                Auth::user()->decrement('balance', $amount);
+                                Auth::user()->decrement('score', ceil($amount / 10));
+
+                                PayLogs::store($userId, $accountNumber,'output', 'success', $amount, 'ok');
+                            } else {
+                                PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, json_encode($payeer->getErrors()));
+                            }
+                        } else {
+                            PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, json_encode($payeer->getErrors()));
+                        }
+
+                    } else {
+                        $withdrawPays->to_do = true;
+
+                        Auth::user()->decrement('balance', $amount);
+                        Auth::user()->decrement('score', ceil($amount / 10));
+
+                        PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, 'send to to_do');
+                    }
+                }
+                $withdrawPays->save();
+            } else {
+                PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, 'not found');
+            }
+        } else {
+            PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, json_encode($payeer->getErrors()));
+        }
+        return redirect()->route('withdraw-funds');
     }
 }

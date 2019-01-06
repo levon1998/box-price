@@ -17,7 +17,7 @@
                                 <form method="post" action="{{ url(route('withdraw-funds-save')) }}">
                                     <h2 class="template-color mt3 mb3">Заказать мгновенную выплату </h2>
                                     <div class="form-group has-warning has-feedback mb2">
-                                        <input type="text" name="payeer_account" class="form-control {{ ($errors->first('payeer_account')) ? 'has-error' : '' }} input-type-text" placeholder="Номер Кошелька Payeer (P**********)">
+                                        <input type="text" name="payeer_account" value="{{ old('payeer_account') }}" class="form-control {{ ($errors->first('payeer_account')) ? 'has-error' : '' }} input-type-text" placeholder="Номер Кошелька Payeer (P**********)">
                                         <span class="validation-error-text text-left mb1 mt1">{{ $errors->first('payeer_account') }}</span>
                                     </div>
                                     <div class="form-group has-warning has-feedback mb2">
@@ -35,6 +35,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center">Идентификатор</th>
+                                        <th class="text-center">Кошелек</th>
                                         <th class="text-center">Сумма</th>
                                         <th class="text-center">Статус</th>
                                         <th class="text-center">Дата вывода</th>
@@ -42,7 +43,15 @@
                                     </thead>
                                     <tbody>
                                         @if (isset($lastPays) && count($lastPays) > 0)
-
+                                            @foreach ($lastPays as $pay)
+                                                <tr>
+                                                    <td>{{ $pay->id }}</td>
+                                                    <td>{{ $pay->payeer }}</td>
+                                                    <td>{{ number_format($pay->pay, 2, '.', '')}}</td>
+                                                    <td>{{ translateWithdrawState($pay->state) }}</td>
+                                                    <td>{{ $pay->created_at }}</td>
+                                                </tr>
+                                            @endforeach
                                         @else
                                             <tr>
                                                 <td colspan="4"><p>Вы ещё не заказывали выплату </p></td>
