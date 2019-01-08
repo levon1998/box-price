@@ -183,11 +183,19 @@ class AccountController extends Controller
                                 Auth::user()->decrement('balance', $amount);
                                 Auth::user()->decrement('score', ceil($amount / 10));
 
+                                $request->session()->flash('success', true);
+                                $request->session()->flash('message', "Поздравляем. выплата успешно выполнено.");
                                 PayLogs::store($userId, $accountNumber,'output', 'success', $amount, 'ok');
                             } else {
+
+                                $request->session()->flash('success', true);
+                                $request->session()->flash('message', "Ошибка, пожалуйста попробуйте немного позже.");
                                 PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, json_encode($payeer->getErrors()));
                             }
                         } else {
+
+                            $request->session()->flash('success', false);
+                            $request->session()->flash('message', "Ошибка, пожалуйста попробуйте немного позже.");
                             PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, json_encode($payeer->getErrors()));
                         }
 
@@ -197,16 +205,23 @@ class AccountController extends Controller
                         Auth::user()->decrement('balance', $amount);
                         Auth::user()->decrement('score', ceil($amount / 10));
 
+                        $request->session()->flash('success', true);
+                        $request->session()->flash('message', "Поздравляем. выплата успешно выполнено.");
                         PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, 'send to to_do');
                     }
                 }
                 $withdrawPays->save();
             } else {
+                $request->session()->flash('success', false);
+                $request->session()->flash('message', "Кошелек не найден.");
                 PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, 'not found');
             }
         } else {
+            $request->session()->flash('success', false);
+            $request->session()->flash('message', "Ошибка, пожалуйста попробуйте немного позже.");
             PayLogs::store($userId, $accountNumber, 'output', 'error', $amount, json_encode($payeer->getErrors()));
         }
+
         return redirect()->route('withdraw-funds');
     }
 }

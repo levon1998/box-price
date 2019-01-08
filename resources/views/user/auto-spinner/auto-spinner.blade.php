@@ -24,7 +24,7 @@
                                 @if (isset($spinners) && count($spinners) > 0)
                                     @foreach ($spinners as $key => $spinner)
                                         <div class="service-box spinner{{$spinner->id}} wow fadeInUp" data-wow-delay=".{{$key+2}}s" data-wow-duration=".{{$key+2}}s">
-                                            <img src="{{ asset('/img/auto-spinner.png') }}" class="box-image-size img-responsive" alt="image_source">
+                                            <img src="{{ asset('/img/auto-spinner-level-'.$spinner->level.'.png') }}" class="box-image-size img-responsive" alt="image_source">
                                             <span>{{$spinner->name}}</span>
                                             <span>{{ $spinner->description }}</span>
                                             @if(is_null(Auth::user()->spinner) && $spinner->id == 1)

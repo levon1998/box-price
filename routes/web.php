@@ -1,5 +1,9 @@
 <?php
 
+use App\Libs\CPayeer;
+use App\Models\PayLogs;
+use App\Models\WithdrawPays;
+
 Route::get('/', "HomeController@index");
 Route::get('/how-it-work', "HomeController@howItWork");
 Route::post('/subscribe', "HomeController@subscribe");

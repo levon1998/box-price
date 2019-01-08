@@ -17,7 +17,8 @@
                 @if (Auth::check())
                     <li>
                         <a href="{{ url('/auto-spinner') }}">
-                            <img src="{{ asset('/img/auto-spinner.png') }}" title="Авто Спиннер" width="30px" height="30px" style="margin-top: -7px"/>
+                            @php($spinnerLevel = isset(Auth::user()->spinner->spinner->level) ? Auth::user()->spinner->spinner->level : 1 )
+                            <img src="{{ asset('/img/auto-spinner-level-'.$spinnerLevel.'.png') }}" title="Авто Спиннер" width="30px" height="30px" style="margin-top: -7px"/>
                         </a>
                     </li>
                     <ul class="nav navbar-nav navbar-right">

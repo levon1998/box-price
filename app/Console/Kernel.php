@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        "App\Console\Commands\AddScoreToUser"
+        "App\Console\Commands\AddScoreToUser",
+        "App\Console\Commands\PayToDoPayments",
     ];
 
     /**
@@ -26,6 +27,9 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('process:score')
                   ->dailyAt('12:00');
+
+        $schedule->command('process:pay')
+            ->hourly();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PayLogs;
 use App\Models\ReplenishPays;
 use App\User;
 use Illuminate\Http\Request;
@@ -57,6 +58,8 @@ class PaymentsController extends Controller
         $user->increment('score', ceil($replenishPays->pay / 10));
         $user->save();
 
+        PayLogs::store($replenishPays->user_id, 'payeer', 'input', 'success', $sum, 'Пополнения');
+
         $request->session()->flash('success', true);
         return redirect('/replenish-funds');
     }
@@ -67,6 +70,11 @@ class PaymentsController extends Controller
      */
     public function replenishFundsFail(Request $request)
     {
+        $replenishPays = ReplenishPays::select('user_id', 'pay')->where('order_id', $request->input('m_orderid'))->first();
+        $sum = $replenishPays->pay + ($replenishPays->pay * 20 / 100);
+
+        PayLogs::store($replenishPays->user_id, 'payeer', 'input', 'error', $sum, 'Не удалось пополнить счёт');
+
         ReplenishPays::where('order_id', $request->input('m_orderid'))->delete();
         $request->session()->flash('success', false);
         return redirect('/replenish-funds');

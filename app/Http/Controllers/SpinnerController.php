@@ -14,7 +14,7 @@ class SpinnerController extends Controller
      */
     public function autoSpinner()
     {
-        $spinners = Spinners::select('id', 'name', 'description', 'price')
+        $spinners = Spinners::select('id', 'name', 'description', 'price', 'level')
             ->orderBy('level')
             ->get();
 

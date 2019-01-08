@@ -8,6 +8,13 @@
     <section>
         <div class="banner burger  align-item-center parallax" style="background-position-y: 0px;">
             <div class="container">
+
+                @if (!empty(Session::get('success')) && Session::get('success'))
+                    <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+                @elseif (!empty(Session::get('success')) && !Session::get('success'))
+                    <div class="alert alert-danger" role="alert">{{ Session::get('message') }}</div>
+                @endif
+
                 <div class="row align-item-center">
                     <div class="col-sm-12 text-center" style="min-height: 500px;">
                         @include('user.account.tabs')

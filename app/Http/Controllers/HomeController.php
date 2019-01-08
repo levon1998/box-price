@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Boxes;
+use App\Models\BoxUser;
 use App\Models\Subscriber;
 use App\User;
 use Carbon\Carbon;
@@ -79,6 +80,14 @@ class HomeController extends Controller
      */
     public function lastWins()
     {
-        return view('user.last-wins.index');
+        $lastWins = BoxUser::select('boxes.name', 'box_user.created_at', 'box_user.opened_date', 'box_user.price', 'users.username')
+            ->join('boxes', 'boxes.id', '=', 'box_user.box_id')
+            ->join('users', 'users.id', '=', 'box_user.user_id')
+            ->where('state', 'open')
+            ->orderBy('created_at', 'desc')
+            ->limit(20)
+            ->get();
+
+        return view('user.last-wins.index', compact('lastWins'));
     }
 }

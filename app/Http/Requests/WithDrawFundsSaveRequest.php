@@ -29,7 +29,7 @@ class WithDrawFundsSaveRequest extends FormRequest
     {
         return [
             'payeer_account' => ['required', new CheckPayeerNumber],
-            'm_amount' => ['required', 'numeric', 'min:100', new CheckBalance, new OrderPay]
+            'm_amount' => ['required', 'numeric', 'min:1', new CheckBalance, new OrderPay]
         ];
     }
 
