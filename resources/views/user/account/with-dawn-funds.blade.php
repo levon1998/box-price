@@ -61,7 +61,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="4"><p>Вы ещё не заказывали выплату </p></td>
+                                                <td colspan="5"><p>Вы ещё не заказывали выплату </p></td>
                                             </tr>
                                         @endif
                                     </tbody>
