@@ -30,10 +30,10 @@ class BoxController extends Controller
                 $user->decrement('balance', $box->price);
                 $user->save();
                 $maxPrice = $box->price * 2;
-                $content  = $this->generateModalContent('Поздравляем', $box->image_source, "Вы успешно приобрели ящик с возможным вигишом до {$maxPrice} рублей.", 'OK');
+                $content  = $this->generateModalContent('Поздравляем', $box->image_source, "Вы успешно приобрели ящик с возможным вигишом до {$maxPrice} рублей.", 'OK', false);
                 $response = ['status' => 'OK', 'body' => $content, 'data' => ['balance' => number_format($user->balance, 2, '.', ' ')]];
             } else {
-                $content  = $this->generateModalContent('недостаточно средства', '/img/Balance_justice.png', "К сожалению вашем счету недостаточно средств хотите пополнить его.", 'BALANCE');
+                $content  = $this->generateModalContent('недостаточно средства', '/img/Balance_justice.png', "К сожалению вашем счету недостаточно средств хотите пополнить его.", 'BALANCE', false);
                 $response = ['status' => 'BALANCE', 'body' => $content, 'data' => ['balance' => number_format($user->balance, 2, '.', ' ')]];
             }
         } else {
@@ -48,17 +48,18 @@ class BoxController extends Controller
      * @param $image
      * @param $content
      * @param $status
+     * @param $hideMyBoxes
      * @return string
      * @throws \Throwable
      */
-    private function generateModalContent($header, $image, $content, $status)
+    private function generateModalContent($header, $image, $content, $status, $hideMyBoxes = true)
     {
         return view('user.home.modal-content')->with([
             'header'        => $header,
             'image'         => $image,
             'content'       => $content,
             'status'        => $status,
-            'hideMyBoxes'   => true
+            'hideMyBoxes'   => $hideMyBoxes
         ])->render();
     }
 }
