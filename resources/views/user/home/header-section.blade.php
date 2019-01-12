@@ -17,7 +17,7 @@
                             </ul>
                         </p>
                         <div class="mt3 banner-btn-group">
-                            <a href="{{ url('/how-it-work') }}" class="redirect-btn btn-alpha ">Как Это Работает </a>
+                            {{--<a href="{{ url('/how-it-work') }}" class="redirect-btn btn-alpha ">Как Это Работает </a>--}}
                             @if (!Auth::user())
                                 <a href="{{ url('sign-up') }}" class="redirect-btn btn-alpha ">Регистрация </a>
                             @endif
