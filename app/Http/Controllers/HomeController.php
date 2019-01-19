@@ -90,4 +90,12 @@ class HomeController extends Controller
 
         return view('user.last-wins.index', compact('lastWins'));
     }
+
+    /**
+     * Function to return about page
+     */
+    public function about()
+    {
+        return view('user.about.about');
+    }
 }

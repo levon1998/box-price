@@ -8,6 +8,10 @@ Route::get('/', "HomeController@index");
 Route::get('/how-it-work', "HomeController@howItWork");
 Route::post('/subscribe', "HomeController@subscribe");
 Route::get('/last-winnings', "HomeController@lastWins");
+Route::get('/news', "NewsController@index");
+Route::get('/about', "HomeController@about");
+Route::get('/contacts', "ContactController@index");
+Route::get('/rules', "HomeController@rules");
 
 // Pages for not Authenticated users
 
@@ -43,4 +47,10 @@ Route::middleware('user')->group(function () {
     Route::post('/replenish-funds/result', 'PaymentsController@replenishFundsResult');
     Route::get('/replenish-funds/success', 'PaymentsController@replenishFundsSuccess');
     Route::get('/replenish-funds/fail', 'PaymentsController@replenishFundsFail');
+});
+
+// Pages for admin
+
+Route::middleware('admin')->prefix('admin')->group(function () {
+    Route::get('/login', "AdminAuthController@showLoginForm")->name('admin-login');
 });

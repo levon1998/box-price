@@ -23,6 +23,10 @@
                             <div class="col-md-8 col-md-offset-2">
                                 <form method="post" action="{{ url(route('withdraw-funds-save')) }}">
                                     <h2 class="template-color mt3 mb3">Заказать мгновенную выплату </h2>
+                                    <p class="text-left">Выплаты осуществляются в автоматическом режиме на платежную систему PAYEER! Процент при выводе составляет 0% на Payeer.
+                                        Заказать выплату можно не чаще одного раза в 24 часа!
+                                        <br />
+                                        Из платежной системы Payeer Вы можете вывести свои средства на все известные платежные системы и международные банки.</p>
                                     <div class="form-group has-warning has-feedback mb2">
                                         <input type="text" name="payeer_account" value="{{ old('payeer_account') }}" class="form-control {{ ($errors->first('payeer_account')) ? 'has-error' : '' }} input-type-text" placeholder="Номер Кошелька Payeer (P**********)">
                                         <span class="validation-error-text text-left mb1 mt1">{{ $errors->first('payeer_account') }}</span>

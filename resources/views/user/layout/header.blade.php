@@ -14,6 +14,10 @@
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right" id="nav_bar">
                 <li><a href="{{ url('/last-winnings') }}">Последние Выигрыши</a></li>
+                {{--<li><a href="{{ url('/news') }}">Новости</a></li>--}}
+                {{--<li><a href="{{ url('/rules') }}">Правила</a></li>--}}
+                <li><a href="{{ url('/about') }}">О проекте</a></li>
+                {{--<li><a href="{{ url('/contacts') }}">Контакты</a></li>--}}
                 @if (Auth::check())
                     <li>
                         <a href="{{ url('/auto-spinner') }}">

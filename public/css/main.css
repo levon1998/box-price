@@ -2604,3 +2604,7 @@ a.socialIcon:hover, .socialHoverClass {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.about-text p {
+    font-size: 17px;
+}
