@@ -16,7 +16,7 @@
                     <div class="col-sm-offset-3 col-sm-6 col-lg-6 sign-up-box text-center">
                         <form action="{{ url('/sign-in') }}" method="post">
                             {!! csrf_field() !!}
-                            <h2 class="template-color mt3 mb3">Регистрация</h2>
+                            <h2 class="template-color mt3 mb3">Авторизация </h2>
                             <div class="form-group has-warning has-feedback mb2">
                                 <input type="text" name="username" value="{{ old('username') }}" class="form-control {{ ($errors->first('username')) ? 'has-error' : '' }} input-type-text" placeholder="Имя Пользователя">
                                 <span class="validation-error-text text-left mb1 mt1">{{ $errors->first('username') }} {{ Session::get('notActiveUser') }}</span>
