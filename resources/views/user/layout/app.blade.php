@@ -12,6 +12,16 @@
     <link href="{{ asset('/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     @yield('styles')
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}" type="text/css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132894293-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-132894293-1');
+    </script>
+
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="82">
