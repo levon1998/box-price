@@ -116,11 +116,11 @@ class AccountController extends Controller
         $sum = number_format($request->input('m_amount'), 2, '.', '');
 
         $arHash['m_shop'] = env('PAYEER_M_ID');
-        $arHash['m_orderid'] = $mOrderId;
+        $arHash['m_orderid'] = '154809729255c46170cee152';//$mOrderId;
         $arHash['m_amount'] = $sum;
         $arHash['m_curr'] = env('PAYEER_M_CURR');
-        $arHash['m_desc'] = base64_encode('Replenish Funds');
-        $arHash['m_key'] = env('PAYEER_SECRET');
+        $arHash['m_desc'] = base64_encode('Пополнения счета');
+        $arHash['m_key']  = env('M_KEY');
         $arHash['m_sign'] = strtoupper(hash('sha256', implode(':', $arHash)));
 
         ReplenishPays::create([
