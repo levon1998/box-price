@@ -112,14 +112,14 @@ class AccountController extends Controller
     public function replenishFundsSave(ReplenishFundsSaveRequest $request)
     {
         $userId = Auth::user()->id;
-        $mOrderId = '12345'; // uniqid(time().Auth::user()->id);
+        $mOrderId = uniqid(time().Auth::user()->id);
         $sum = number_format($request->input('m_amount'), 2, '.', '');
 
         $arHash['m_shop'] = env('PAYEER_M_ID');
         $arHash['m_orderid'] = $mOrderId;
         $arHash['m_amount'] = $sum;
         $arHash['m_curr'] = env('PAYEER_M_CURR');
-        $arHash['m_desc'] = base64_encode('Test');
+        $arHash['m_desc'] = base64_encode('Replenish Funds');
         $arHash['m_sign'] = env('PAYEER_M_SIGN');//strtoupper(hash('sha256', implode(':', $arHash)));
 
         ReplenishPays::create([
