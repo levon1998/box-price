@@ -120,6 +120,7 @@ class AccountController extends Controller
         $arHash['m_amount'] = $sum;
         $arHash['m_curr'] = env('PAYEER_M_CURR');
         $arHash['m_desc'] = base64_encode('Replenish Funds');
+        $arHash['m_key'] = env('PAYEER_SECRET');
         $arHash['m_sign'] = strtoupper(hash('sha256', implode(':', $arHash)));
 
         ReplenishPays::create([
