@@ -161,7 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 //        Laravel\Socialite\SocialiteServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
-        ActionM\WebMoneyMerchant\WebMoneyMerchantServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
     ],
 
     /*
@@ -211,7 +211,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'WebMoneyMerchant' => ActionM\WebMoneyMerchant\Facades\WebMoneyMerchant::class,
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
     ],
 
 ];
