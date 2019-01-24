@@ -7,9 +7,13 @@
 @section('content')
     @include('user.home.header-section')
 
+    @include('user.home.hot-news')
+
     @include('user.home.boxes-section')
 
     @include('user.home.winers-section')
+
+    @include('user.home.news')
 
     @include('user.home.review-section')
 @endsection

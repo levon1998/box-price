@@ -15,15 +15,16 @@
     <link href="{{ asset('/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     @yield('styles')
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}" type="text/css">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132894293-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'UA-132894293-1');
-    </script>
+    @if (App::environment() == 'production')
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132894293-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-132894293-1');
+        </script>
+    @endif
 
 </head>
 
@@ -44,11 +45,11 @@
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/main.js') }}"></script>
     <script src="{{ asset('/js/wow.min.js') }}"></script>
-	<!-- BEGIN JIVOSITE CODE {literal} -->
-	<script type='text/javascript'>
-	(function(){ var widget_id = 'uo4PhT9NJA';var d=document;var w=window;function l(){var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
-	</script>
-	<!-- {/literal} END JIVOSITE CODE -->
+	@if (App::environment() == 'production')
+        <script type='text/javascript'>
+        (function(){ var widget_id = 'uo4PhT9NJA';var d=document;var w=window;function l(){var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+        </script>
+    @endif
     @yield('scripts')
 </body>
 </html>

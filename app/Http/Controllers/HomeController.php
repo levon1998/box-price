@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Boxes;
 use App\Models\BoxUser;
+use App\Models\News;
 use App\Models\Subscriber;
 use App\User;
 use Carbon\Carbon;
@@ -25,7 +26,9 @@ class HomeController extends Controller
         SEO::opengraph()->addProperty('type', 'articles');
 
         $boxes = Boxes::select('id', 'name', 'description', 'price', 'image_source')->get();
-        return view('user.home.index', compact('boxes'));
+        $lastNews = News::select('id', 'title', 'image', 'text')->where('show_status', 1)->orderBy('id', 'desc')->first();
+
+        return view('user.home.index', compact('boxes', 'lastNews'));
     }
 
     /**
