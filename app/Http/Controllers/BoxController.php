@@ -21,17 +21,19 @@ class BoxController extends Controller
         $request->validate([
             'id' => 'required|exists:boxes,id',
         ]);
-        $box  = Boxes::select('id', 'price', 'image_source')->find($request->input('id'));
+        $box  = Boxes::select('id', 'name', 'description', 'price', 'image_source')->find($request->input('id'));
         $user = User::select('id', 'balance')->find(Auth::user()->id);
 
         if (!empty($box) && !empty($user)) {
             if ($box->price <= $user->balance) {
-                BoxUser::buyBox($box->id, $user->id);
+                $boxUser = BoxUser::buyBox($box->id, $user->id);
                 $user->decrement('balance', $box->price);
                 $user->save();
                 $maxPrice = $box->price * 2;
                 $content  = $this->generateModalContent('Поздравляем', $box->image_source, "Вы успешно приобрели ящик с возможным вигишом до {$maxPrice} рублей.", 'OK', false);
                 $response = ['status' => 'OK', 'body' => $content, 'data' => ['balance' => number_format($user->balance, 2, '.', ' ')]];
+                $response['data']['box'] = view('user.account.PerBoxBlock', compact('box', 'boxUser'))->render();
+
             } else {
                 $content  = $this->generateModalContent('недостаточно средства', '/img/Balance_justice.png', "К сожалению вашем счету недостаточно средств хотите пополнить его.", 'BALANCE', false);
                 $response = ['status' => 'BALANCE', 'body' => $content, 'data' => ['balance' => number_format($user->balance, 2, '.', ' ')]];
@@ -40,6 +42,7 @@ class BoxController extends Controller
             $content  = $this->generateModalContent('Произошла ошибка', '/img/404.png', "Ошибка ящик не найден.", 'ERROR');
             $response = ['status' => 'ERROR', 'body' => $content];
         }
+
         return response()->json($response);
     }
 

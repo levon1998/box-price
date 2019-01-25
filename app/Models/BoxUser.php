@@ -19,7 +19,8 @@ class BoxUser extends Model
         $boxUser = new Self;
         $boxUser->box_id = $boxID;
         $boxUser->user_id = $userID;
-        return $boxUser->save();
+        $boxUser->save();
+        return $boxUser;
     }
 
     /**

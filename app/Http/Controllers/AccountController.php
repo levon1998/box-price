@@ -40,9 +40,10 @@ class AccountController extends Controller
     public function myBoxes()
     {
         $closedBoxes = BoxUser::getUserBoxes('closed');
-        $openBoxes = BoxUser::getUserBoxes('open');
+        $openBoxes   = BoxUser::getUserBoxes('open');
+        $boxes       = Boxes::select('id', 'name', 'description', 'price', 'image_source')->get();
 
-        return view('user.account.my-boxes', compact('closedBoxes', 'openBoxes'));
+        return view('user.account.my-boxes', compact('closedBoxes', 'openBoxes', 'boxes'));
     }
 
     /**
