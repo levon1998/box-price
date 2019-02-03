@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         "App\Console\Commands\AddScoreToUser",
         "App\Console\Commands\PayToDoPayments",
+        "App\Console\Commands\PassiveIncomeCommand",
     ];
 
     /**
@@ -25,11 +26,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('process:score')
-                  ->dailyAt('12:00');
+        $schedule->command('process:score')
+            ->dailyAt('12:00');
 
         $schedule->command('process:pay')
             ->everyTenMinutes();
+
+        $schedule->command('process:passive-income')
+            ->dailyAt('12:30');
     }
 
     /**

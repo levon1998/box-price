@@ -11,7 +11,7 @@
                 <div class="row align-item-center">
                     <div class="row">
                         <div class="col-sm-12 col-lg-8 col-lg-offset-2 text-center">
-                            <h2 class="wow fadeInUp" data-wow-delay=".2s" data-wow-duration="1s">Авто спиннер для получения баллов каждый день </h2>
+                            <h2 class="template-color wow fadeInUp" data-wow-delay=".2s" data-wow-duration="1s">Авто спиннер для получения баллов каждый день </h2>
                             <div class="wow fadeInUp" data-wow-delay=".5s" data-wow-duration=".5s">
                                 <p class="big-pera">Авто спиннер предназначен для получения баллов каждый день, чем выше твой уровень спиннера чем больше шанс получить больше баллов. баллы автоматически добавляется каждый день в 12:00</p>
                             </div>

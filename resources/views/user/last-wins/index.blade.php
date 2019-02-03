@@ -9,7 +9,7 @@
         <div class="banner burger  align-item-center parallax" style="background-position-y: 0px;">
             <div class="container">
                 <div class="row  text-center">
-                    <h3>Последние Выигрыши</h3><br /><br />
+                    <h3 class="template-color">Последние Выигрыши</h3><br /><br />
                     <table class="table">
                         <thead>
                             <tr>
@@ -26,7 +26,7 @@
                                     <tr>
                                         <td>{{ $win->name }}</td>
                                         <td>{{ $win->username }}</td>
-                                        <td>{{ $win->price }}</td>
+                                        <td>{{ $win->price }} рублей</td>
                                         <td>{{ $win->created_at }}</td>
                                         <td>{{ $win->opened_date }}</td>
                                     </tr>

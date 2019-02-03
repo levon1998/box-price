@@ -15,7 +15,10 @@
                     <div class="alert alert-danger" role="alert">{{ Session::get('message') }}</div>
                 @endif
 
-                <div class="row align-item-center">
+                <div class="row align-item-center account-central-block">
+
+                    @include('user.account.pays')
+
                     <div class="col-sm-12 text-center" style="min-height: 500px;">
                         @include('user.account.tabs')
 

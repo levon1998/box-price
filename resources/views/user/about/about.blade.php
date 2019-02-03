@@ -9,7 +9,7 @@
         <div class="banner burger  align-item-center parallax" style="background-position-y: 0px;">
             <div class="container">
                 <div class="row text-left">
-                    <h3 class="text-center">О проекте </h3><hr />
+                    <h3 class="template-color text-center">О проекте </h3><hr />
                     <div class="about-text">
                         <p>О проекте Box price:</p>
                         <p>Стоимость Ящиков всего от 50 руб. <br /> Автоматическая система для пополнения и вывода денег.</p>

@@ -5,7 +5,7 @@
             <div class="col-sm-12 col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="wow fadeInUp" data-wow-delay=".2s" data-wow-duration="1s">Доступные ящики для заработка</h2>
                 <div class="wow fadeInUp" data-wow-delay=".5s" data-wow-duration=".5s">
-                    <p class="big-pera">В данный момент в проекте доступны 4 ящиков для заработка с койдавай можна виграт до 3 раза больше </p>
+                    <p class="big-pera">В данный момент в проекте доступны 4 ящиков для заработка с койдавай можна виграт до 2 раза больше </p>
                 </div>
             </div>
         </div>

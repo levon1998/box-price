@@ -34,6 +34,8 @@ Route::middleware('user')->group(function () {
     Route::post('/open-box', 'AccountController@openBox')->name('open-box');
     Route::get('/auto-spinner', 'SpinnerController@autoSpinner')->name('auto-spinner');
     Route::post('/buy-spinner', 'SpinnerController@buySpinner')->name('buy-spinner');
+    Route::get('/passive-income', 'PassiveIncomeController@index')->name('passive-income');
+    Route::post('/buy-passive-income', 'PassiveIncomeController@buyPassiveIncome')->name('buy-passive-income');
 
     // Payment actions
     Route::get('/replenish-funds', 'AccountController@replenishFunds')->name('replenish-funds');

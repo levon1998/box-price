@@ -8,13 +8,17 @@
     <section>
         <div class="banner burger  align-item-center parallax" style="background-position-y: 0px;">
             <div class="container">
-                <div class="row align-item-center">
+                <div class="row align-item-center account-central-block">
+
+                    @include('user.account.pays')
+
                     <div class="col-sm-12 text-center" style="min-height: 500px;">
+
                         @include('user.account.tabs')
 
                         <div class="tab-content">
                             <div class="tab-pane fade in active">
-                                <h3>Последние Выгрышы </h3><br />
+                                <h3 class="template-color">Последние Выгрышы </h3><hr/>
                                 <table class="table">
                                     <thead>
                                         <tr>

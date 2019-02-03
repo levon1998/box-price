@@ -24,6 +24,15 @@
             gtag('js', new Date());
             gtag('config', 'UA-132894293-1');
         </script>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-9591054949065064",
+                enable_page_level_ads: true
+            });
+        </script>
+        <script src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>
+        <script>window.bugsnagClient = bugsnag('353ec10c0362c7c9a5ba434d3ae4244b')</script>
     @endif
 
 </head>
