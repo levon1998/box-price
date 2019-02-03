@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Boxes;
 use App\Models\BoxUser;
 use App\Models\News;
+use App\Models\PassiveIncome;
 use App\Models\Subscriber;
 use App\User;
 use Carbon\Carbon;
@@ -17,11 +18,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $boxes = Boxes::select('id', 'name', 'description', 'price', 'image_source')->get();
         $lastNews = News::select('id', 'title', 'image', 'text')->where('show_status', 1)->orderBy('id', 'desc')->first();
+        $passiveIncome = PassiveIncome::select('id', 'title', 'duration', 'price', 'daily_income', 'description', 'image')->get();
 
-        return view('user.home.index', compact('boxes', 'lastNews'));
+        return view('user.home.index', compact('boxes', 'lastNews', 'passiveIncome'));
     }
 
     /**
