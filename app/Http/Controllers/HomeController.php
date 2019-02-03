@@ -84,12 +84,6 @@ class HomeController extends Controller
      */
     public function lastWins()
     {
-        SEO::setTitle('Последние Выигрыши');
-        SEO::setDescription('Новые возможности онлайн заработка с минимальным рисками ');
-        SEO::opengraph()->setUrl(url('/'));
-        SEO::setCanonical(url('/last-winnings'));
-        SEO::opengraph()->addProperty('type', 'articles');
-
         $lastWins = BoxUser::select('boxes.name', 'box_user.created_at', 'box_user.opened_date', 'box_user.price', 'users.username')
             ->join('boxes', 'boxes.id', '=', 'box_user.box_id')
             ->join('users', 'users.id', '=', 'box_user.user_id')
@@ -106,12 +100,6 @@ class HomeController extends Controller
      */
     public function about()
     {
-        SEO::setTitle('О проекте Box Price');
-        SEO::setDescription('Новые возможности онлайн заработка с минимальным рисками ');
-        SEO::opengraph()->setUrl(url('/'));
-        SEO::setCanonical(url('/about'));
-        SEO::opengraph()->addProperty('type', 'articles');
-
         return view('user.about.about');
     }
 }
