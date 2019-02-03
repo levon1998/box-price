@@ -9,8 +9,6 @@
     <meta name="author" content="Pixel Speaks" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {!! SEO::generate(true) !!}
-
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link href="{{ asset('/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     @yield('styles')

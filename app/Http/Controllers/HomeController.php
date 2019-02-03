@@ -9,8 +9,6 @@ use App\Models\Subscriber;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use SEO;
 
 class HomeController extends Controller
 {
@@ -19,11 +17,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        SEO::setTitle('Главная страница');
-        SEO::setDescription('Новые возможности онлайн заработка с минимальным рисками ');
-        SEO::opengraph()->setUrl(url('/'));
-        SEO::setCanonical(url('/'));
-        SEO::opengraph()->addProperty('type', 'articles');
 
         $boxes = Boxes::select('id', 'name', 'description', 'price', 'image_source')->get();
         $lastNews = News::select('id', 'title', 'image', 'text')->where('show_status', 1)->orderBy('id', 'desc')->first();
