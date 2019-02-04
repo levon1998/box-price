@@ -49,6 +49,7 @@ Route::middleware('user')->group(function () {
 
 // Pages for admin
 
-Route::middleware('admin')->prefix('admin')->group(function () {
-    Route::get('/login', "AdminAuthController@showLoginForm")->name('admin-login');
+Route::middleware('admin')->prefix('adminchik98')->group(function () {
+    Route::get('/login', "Auth\AdminAuthController@showLoginForm")->name('admin-login');
+    Route::post('/login', "Auth\AdminAuthController@login")->name('admin-login');
 });

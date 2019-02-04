@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 
 @section('title')
-    Box Price - Главная страница
+    Активный и пассивный заработок в интернет
 @endsection
 
 @section('content')

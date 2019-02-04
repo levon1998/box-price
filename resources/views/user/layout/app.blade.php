@@ -3,10 +3,10 @@
 <head>
     <title>@yield('title')</title>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Cryptency ICO is a modern responsive landing page template specially created for ICO Agencies and Crypto Currency Businesses" />
-    <meta name="author" content="Pixel Speaks" />
+    <meta name="description" content="Box Price Это уникальный проект для зарабатывания денег. Зарабатывать можно как активно так и пассивна без всяких усилий." />
+    <meta name="keywords" content="заработок в интернете, онлайн заработок, пассивный доход, доход без усилий, азартные игры" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -21,13 +21,6 @@
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'UA-132894293-1');
-        </script>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: "ca-pub-9591054949065064",
-                enable_page_level_ads: true
-            });
         </script>
         <script src="//d2wy8f7a9ursnm.cloudfront.net/v5/bugsnag.min.js"></script>
         <script>window.bugsnagClient = bugsnag('353ec10c0362c7c9a5ba434d3ae4244b')</script>
