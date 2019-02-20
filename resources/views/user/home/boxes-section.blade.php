@@ -58,7 +58,7 @@
                             @if (Auth::check())
                                 <a href="{{ url('/passive-income') }}" class="btn-alpha mt2 redirect-btn">{{ $item->price }} Рублей</a>
                             @else
-                                <a href="{{ url('sign-in') }}" class="btn-alpha mt2 redirect-btn">{{ $box->price }} Рублей</a>
+                                <a href="{{ url('sign-in') }}" class="btn-alpha mt2 redirect-btn">{{ $item->price }} Рублей</a>
                             @endif
                         </div>
                     @endforeach
